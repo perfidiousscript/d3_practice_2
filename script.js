@@ -12,6 +12,8 @@ svg.attr("width", 900);
 
 var dataset = [50,100,150,50,100,250,450];
 
+var sortOrder = false;
+
 
 svg.selectAll("rect")
     .data(dataset)
@@ -32,13 +34,14 @@ svg.selectAll("rect")
         d3.select(this)
             .transition()
             .duration(250)
-            .attr("fill", "rgb(0, 0," + d + ")");
+            .attr("fill", "rgb(" + d%100 +","+ d%25+"," + d%255 + ")");
     });
 
 sortBars = function(){
+    sortOrder = !sortOrder;
     svg.selectAll("rect")
         .sort(function(a,b){
-            return d3.ascending(a,b)
+            return sortOrder?d3.ascending(a,b):d3.descending(a,b);
         })
         .transition()
         .duration(1000)
