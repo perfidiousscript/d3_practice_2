@@ -12,6 +12,7 @@ svg.attr("width", 900);
 
 var dataset = [50,100,150,50,100,250,450];
 
+
 svg.selectAll("rect")
     .data(dataset)
     .enter()
@@ -21,7 +22,7 @@ svg.selectAll("rect")
     .attr("x", function(d,i){return i * 60})
     .attr("fill", "blue")
     .on("click", function(d, i) {
-        console.log(d);
+        sortBars();
         })
     .on("mouseover", function(){
         d3.select(this)
@@ -33,6 +34,18 @@ svg.selectAll("rect")
             .duration(250)
             .attr("fill", "rgb(0, 0," + d + ")");
     });
+
+sortBars = function(){
+    svg.selectAll("rect")
+        .sort(function(a,b){
+            return d3.ascending(a,b)
+        })
+        .transition()
+        .duration(1000)
+        .attr("x", function(d,i){
+            return i * 60
+        })
+};
 
 
 //svg.attr("height", 500);
