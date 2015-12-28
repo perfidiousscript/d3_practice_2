@@ -29,6 +29,8 @@ svg.selectAll("rect")
     })
     .on("mouseout", function(d){
         d3.select(this)
+            .transition()
+            .duration(250)
             .attr("fill", "rgb(0, 0," + d + ")");
     });
 
