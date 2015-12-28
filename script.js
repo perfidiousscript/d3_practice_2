@@ -23,7 +23,11 @@ svg.selectAll("rect")
     .on("click", function(d, i) {
         console.log(d);
         })
-    .on("mouseover", function(d){
+    .on("mouseover", function(){
+        d3.select(this)
+            .attr("fill", "orange");
+    })
+    .on("mouseout", function(d){
         d3.select(this)
             .attr("fill", "rgb(0, 0," + d + ")");
     });
