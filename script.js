@@ -18,11 +18,15 @@ svg.selectAll("rect")
     .append("rect")
     .attr("height", function(d){ return d })
     .attr("width", 50)
-    .style("fill", "red")
     .attr("x", function(d,i){return i * 60})
+    .attr("fill", "blue")
     .on("click", function(d, i) {
         console.log(d);
-        });
+        })
+    .on("mouseover", function(d){
+        d3.select(this)
+            .attr("fill", "rgb(0, 0," + d + ")");
+    });
 
 
 //svg.attr("height", 500);
